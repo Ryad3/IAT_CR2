@@ -40,3 +40,10 @@ class policy():
         for next_state, proba in self.mdp.get_transitions(s, a):
             output += self.vf[next_state] * proba
         return output*self.mdp.get_discount_factor()
+    
+class q_function():
+    def __init__(self,Q):
+        self.Q = Q.copy()
+
+    def get_q_value(self,state, action):
+        return self.Q[(state, action)]

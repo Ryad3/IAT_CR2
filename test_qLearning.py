@@ -1,20 +1,18 @@
 from gridworld import *
-from dynamic_programming import *
+from q_learning import *
 from fnc_value import *
 
-mdp = GridWorld(noise=0.2)
+mdp = GridWorld()
 
 print("states:",mdp.get_states())
 print("terminal states:",mdp.get_goal_states()) 
 print("actions:",mdp.get_actions())
 print(mdp.get_transitions(mdp.get_initial_state(),mdp.UP))
 
-dp_a = dp_agent(mdp)
-dp_a.solve()
-print(dp_a.v)
+qL = q_agent(mdp)
+qL.solve()
+print(qL.Q)
 
-fnc = value_function(dp_a.v)
-plc = policy(dp_a.v, mdp)
+q_fnc = q_function(qL.Q)
 
-mdp.visualise_value_function(fnc)
-mdp.visualise_policy(plc)
+mdp.visualise_q_function(q_fnc)
